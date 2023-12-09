@@ -1,4 +1,6 @@
-today = dayjs().format("MMMM D, YYYY");
+dayjs.extend(window.dayjs_plugin_advancedFormat);
+today = dayjs().format("dddd, MMMM Do");
+
 calendar = $("#calendar");
 
 $("#currentDay").text(today);
@@ -22,6 +24,7 @@ function createCalendar() {
     taskDiv = $("<div>").addClass("col-10 p-0");
     taskDiv.addClass(isPassed(hours[i]));
     task = $("<textarea>");
+    task.addClass("w-100");
     task.attr("data-hour", `${hours[i]}`);
 
     //if time has passed then
@@ -54,6 +57,7 @@ function isPassed(currentHour) {
   }
 }
 
+//calculates the hour based on a 12 hour clock and returns the current hour
 function findHour(hour) {
   if (hour == 12) {
     return `${12}PM`;
