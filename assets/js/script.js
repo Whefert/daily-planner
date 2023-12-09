@@ -22,14 +22,17 @@ function createCalendar() {
     taskDiv = $("<div>").addClass("col-10 p-0");
     taskDiv.addClass(isPassed(hours[i]));
     task = $("<textarea>");
-    //if time has passed then
+    task.attr("data-hour", `${hours[i]}`);
 
+    //if time has passed then
     taskDiv.append(task);
 
     //create save button
     saveBtnDiv = $("<div>").addClass("col-1 d-flex p-0");
     saveBtn = $("<button>").addClass("saveBtn");
     saveBtnIcon = $("<i>").addClass("bi bi-floppy2-fill px-4");
+    saveBtnIcon.attr("data-hour", `${hours[i]}`);
+    saveBtn.attr("data-hour", `${hours[i]}`);
     saveBtn.append(saveBtnIcon);
     saveBtnDiv.append(saveBtn);
 
@@ -57,7 +60,18 @@ function findHour(hour) {
   } else if (hour > 12) {
     return `${hour - 12}PM`;
   }
-  return hour;
+  return `${hour}AM`;
 }
 
 createCalendar();
+
+$("button").on("click", (e) => {
+  hourToSave = e.target.getAttribute("data-hour");
+
+  //save value of selected textarea
+  textToSave = $(`textarea[data-hour = ${hourToSave}]`).val();
+  if (textToSave.trim().length === 0) {
+    alert("Cannot save an empty task");
+  }
+  localStorage.setItem(hourToSave, textToSave);
+});
