@@ -28,7 +28,7 @@ The app:
 
 ## Installation
 
-N/A
+- N/A
 
 ## Usage
 
