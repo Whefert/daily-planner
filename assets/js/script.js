@@ -88,9 +88,6 @@ $("button").on("click", (e) => {
   hourToSave = e.target.getAttribute("data-hour");
   //save value of the selected textarea
   textToSave = $(`textarea[data-hour = ${hourToSave}]`).val();
-  if (textToSave.trim().length === 0) {
-    alert("Cannot save an empty task");
-  }
   //save the input text to local storage
   localStorage.setItem(
     `task-${hourToSave}`,
