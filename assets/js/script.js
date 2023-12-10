@@ -87,7 +87,7 @@ $("button").on("click", (e) => {
   //find hour for the row of the clicked button/icon
   hourToSave = e.target.getAttribute("data-hour");
   //save value of the selected textarea
-  textToSave = $(`textarea[data-hour = ${hourToSave}]`).val();
+  textToSave = $(`textarea[data-hour = ${hourToSave}]`).val().trim();
   //save the input text to local storage
   localStorage.setItem(
     `task-${hourToSave}`,
